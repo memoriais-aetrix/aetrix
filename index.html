@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Memoriais Eternos | Plano Anual</title>
+  <title>Aetrix | Memoriais Eternos</title>
+  <link rel="icon" href="logop.png" type="image/png" />
   <style>
     :root {
       color-scheme: dark;
@@ -172,6 +173,61 @@
       text-decoration:none;
       box-shadow:0 20px 60px rgba(125,211,252,0.35);
     }
+    .spotlight {
+      background:linear-gradient(160deg, rgba(125,211,252,0.08), rgba(5,10,20,0.95));
+      border:1px solid rgba(125,211,252,0.35);
+      padding:0;
+      margin-top:3rem;
+    }
+    .spotlight__card {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.5rem;
+      align-items:center;
+      background:rgba(2,6,11,0.7);
+      border-radius:20px;
+      padding:2rem;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 20px 50px rgba(0,0,0,0.4);
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .spotlight__media img {
+      width:100%;
+      border-radius:16px;
+      object-fit:cover;
+      height:280px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 15px 35px rgba(0,0,0,0.45);
+    }
+    .spotlight__body h3 {
+      font-size: clamp(2rem, 2.8vw, 2.6rem);
+      margin-bottom:0.6rem;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+    }
+    .spotlight__body p {
+      color:#cbd5f5;
+      line-height:1.6;
+      margin-bottom:1.25rem;
+    }
+    .spotlight__body a {
+      display:inline-flex;
+      align-items:center;
+      gap:0.4rem;
+      padding:0.85rem 1.6rem;
+      border-radius:999px;
+      border:1px solid rgba(125,211,252,0.7);
+      color:#f3f5fb;
+      text-decoration:none;
+      font-weight:700;
+      background:rgba(125,211,252,0.12);
+      transition:transform 0.2s ease, background 0.2s ease;
+    }
+    .spotlight__body a:hover {
+      transform:translateY(-2px);
+      background:rgba(125,211,252,0.25);
+    }
     footer {
       text-align:center;
       padding:2rem 1rem 3rem;
@@ -208,6 +264,22 @@
         <h3>QR Code premium</h3>
         <p>Ao contratar, enviamos o código digital já em resolução alta para instalar na lápide ou na placa memorial.</p>
       </article>
+    </div>
+  </section>
+
+  <section class="section spotlight">
+    <div class="spotlight__card">
+      <div class="spotlight__media">
+        <img src="joao_silva/img/foto1.jpg" alt="João Silva sorrindo para a família" />
+      </div>
+      <div class="spotlight__body">
+        <h3>Memorial de João Silva</h3>
+        <p>
+          Um tributo cinematográfico ao jeito sereno de João, com fotos emolduradas, histórias especiais e QR Code pronto
+          para acompanhar a lápide. A página já está no ar e pronta para emocionar quem chega para relembrar.
+        </p>
+        <a href="joao_silva/index.html" class="btn-primary">Visitar o memorial</a>
+      </div>
     </div>
   </section>
 
