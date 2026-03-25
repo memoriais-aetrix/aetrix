@@ -746,6 +746,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check-compat.js"></script>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyCcsJEwmVUiEYbRFxScbv-heeyeFTlgCU0",
@@ -753,15 +754,14 @@
       projectId: "aetrix-memorial",
       storageBucket: "aetrix-memorial.firebasestorage.app",
       messagingSenderId: "79540021014",
-      appId: "1:79540021014:web:2f6370c464846ba1119237",
+      appId: "1:79540021014:web:2f6370c464846ba1119237"
     };
 
     const app = firebase.initializeApp(firebaseConfig);
     const appCheck = firebase.initializeAppCheck(firebase, {
       provider: new firebase.appCheck.ReCaptchaV3Provider('6LdUE5gsAAAAAay-TfgSVX_saLynHq3PaoIDPX2h'),
-      isTokenAutoRefreshEnabled: true
-});
-
+      isTokenAutoRefreshEnabled: true,
+    });
     const db = firebase.firestore();
     const messagesRef = db.collection('memoriais').doc('joao_silva').collection('mensagens');
 
