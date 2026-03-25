@@ -757,6 +757,11 @@
     };
 
     const app = firebase.initializeApp(firebaseConfig);
+    const appCheck = firebase.initializeAppCheck(firebase, {
+      provider: new firebase.appCheck.ReCaptchaV3Provider('6LdUE5gsAAAAAay-TfgSVX_saLynHq3PaoIDPX2h'),
+      isTokenAutoRefreshEnabled: true
+});
+
     const db = firebase.firestore();
     const messagesRef = db.collection('memoriais').doc('joao_silva').collection('mensagens');
 
