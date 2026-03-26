@@ -544,6 +544,19 @@
       font-size: 1.5rem;
       cursor: pointer;
       transition: background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox__icon {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
     .lightbox__close {
@@ -710,11 +723,24 @@
   </div>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox__close" type="button" aria-label="Fechar imagem">&times;</button>
-    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Foto anterior">&lsaquo;</button>
+    <button class="lightbox__close" type="button" aria-label="Fechar imagem">
+      <svg class="lightbox__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="5" y1="5" x2="19" y2="19" />
+        <line x1="19" y1="5" x2="5" y2="19" />
+      </svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Foto anterior">
+      <svg class="lightbox__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <polyline points="15 6 8 12 15 18" />
+      </svg>
+    </button>
     <img class="lightbox__media" id="lightboxImage" src="" alt="" />
     <p class="lightbox__caption" id="lightboxCaption"></p>
-    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Próxima foto">&rsaquo;</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Próxima foto">
+      <svg class="lightbox__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <polyline points="9 6 16 12 9 18" />
+      </svg>
+    </button>
   </div>
 
   <script>
