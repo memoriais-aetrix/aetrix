@@ -1,314 +1,672 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aetrix | Memoriais Eternos</title>
-  <link rel="icon" href="logop.png" type="image/png" />
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #02040b;
-      --panel: rgba(15, 23, 42, 0.92);
-      --accent: #7dd3fc;
-      --accent-strong: #22d3ee;
-      --accent-warm: #fbbf24;
-      --soft: #f3f5fb;
-      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #02040b;
-      color: var(--soft);
-      min-height: 100vh;
-    }
-    .hero {
-      background: linear-gradient(180deg, rgba(5,10,20,0.94), rgba(2,6,11,0.95)),
-        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=1600&amp;q=80') center/cover;
-      min-height: 90vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:3rem 1rem;
-    }
-    .hero__inner {
-      max-width: 900px;
-      position:relative;
-      z-index:1;
-    }
-    .hero__inner h1 {
-      font-size: clamp(3rem, 5vw, 4.5rem);
-      letter-spacing:0.2em;
-      text-transform:uppercase;
-      margin-bottom:1rem;
-    }
-    .hero__logo {
-      width: clamp(120px, 15vw, 160px);
-      margin-bottom: 1.5rem;
-      filter: drop-shadow(0 8px 25px rgba(0,0,0,0.6));
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
-    }
-    .hero__inner p {
-      font-size:1.2rem;
-      color:#ced7ee;
-      margin-bottom:2rem;
-      line-height:1.6;
-    }
-    .hero__inner a {
-      display:inline-flex;
-      align-items:center;
-      gap:0.8rem;
-      padding:1rem 2rem;
-      border-radius:999px;
-      background:linear-gradient(120deg,var(--accent),var(--accent-strong));
-      color:#020617;
-      font-weight:700;
-      text-decoration:none;
-      letter-spacing:0.05em;
-      box-shadow:0 20px 60px rgba(125,211,252,0.4);
-    }
-    .section {
-      padding:3.5rem 1rem;
-      text-align:center;
-    }
-    .section h2 {
-      font-size: clamp(2.2rem, 3vw, 3rem);
-      margin-bottom:0.5rem;
-      text-align:center;
-    }
-    .section p {
-      max-width:760px;
-      margin:0.2rem auto 1.5rem;
-      text-align:center;
-      color:#cbd5f5;
-    }
-    .feature-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:1.25rem;
-      max-width:1200px;
-      margin:0 auto;
-    }
-    .feature {
-      padding:1.5rem;
-      border-radius:20px;
-      background:linear-gradient(145deg, rgba(125,211,252,0.1), rgba(8,12,25,0.95));
-      border:1px solid rgba(125,211,252,0.3);
-      min-height:200px;
-      text-align:center;
-    }
-    .feature h3 {
-      margin-bottom:0.5rem;
-      font-size:1.4rem;
-    }
-    .feature p {
-      line-height:1.7;
-    }
-    .pricing {
-      display:flex;
-      justify-content:center;
-      margin-top:2rem;
-    }
-    .pricing-card {
-      padding:2rem;
-      border-radius:26px;
-      background:rgba(0,6,12,0.85);
-      border:1px solid rgba(125,211,252,0.5);
-      max-width:360px;
-      text-align:center;
-      box-shadow:0 25px 60px rgba(0,0,0,0.6);
-    }
-    .pricing-card span {
-      font-size:3rem;
-      font-weight:700;
-      display:block;
-    }
-    .pricing-card small {
-      display:block;
-      color:#8c9af8;
-      margin-bottom:1rem;
-    }
-    .image-grid {
-      margin-top:2rem;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:1rem;
-    }
-    .image-grid img {
-      width:100%;
-      border-radius:18px;
-      height:220px;
-      object-fit:cover;
-      border:1px solid rgba(255,255,255,0.1);
-    }
-    .cta-section {
-      background:linear-gradient(120deg, rgba(125,211,252,0.08), rgba(5,10,20,0.95));
-      border-top:1px solid rgba(125,211,252,0.35);
-      border-bottom:1px solid rgba(125,211,252,0.35);
-    }
-    .cta-inner {
-      max-width:1100px;
-      margin:0 auto;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:1rem;
-      padding:2rem 1rem;
-    }
-    .cta-inner h3 {
-      margin-bottom:0.4rem;
-    }
-    .cta-inner p {
-      color:#cbd5f5;
-    }
-    .cta-inner a {
-      background:linear-gradient(140deg, var(--accent), var(--accent-strong));
-      color:#020617;
-      padding:1rem 2rem;
-      border-radius:999px;
-      font-weight:700;
-      text-decoration:none;
-      box-shadow:0 20px 60px rgba(125,211,252,0.35);
-    }
-    .spotlight {
-      background:linear-gradient(160deg, rgba(125,211,252,0.08), rgba(5,10,20,0.95));
-      border:1px solid rgba(125,211,252,0.35);
-      padding:0;
-      margin-top:3rem;
-    }
-    .spotlight__card {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:1.5rem;
-      align-items:center;
-      background:rgba(2,6,11,0.7);
-      border-radius:20px;
-      padding:2rem;
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 20px 50px rgba(0,0,0,0.4);
-      max-width:1100px;
-      margin:0 auto;
-    }
-    .spotlight__media img {
-      width:100%;
-      border-radius:16px;
-      object-fit:cover;
-      height:280px;
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 15px 35px rgba(0,0,0,0.45);
-    }
-    .spotlight__body h3 {
-      font-size: clamp(2rem, 2.8vw, 2.6rem);
-      margin-bottom:0.6rem;
-      letter-spacing:0.1em;
-      text-transform:uppercase;
-    }
-    .spotlight__body p {
-      color:#cbd5f5;
-      line-height:1.6;
-      margin-bottom:1.25rem;
-    }
-    .spotlight__body a {
-      display:inline-flex;
-      align-items:center;
-      gap:0.4rem;
-      padding:0.85rem 1.6rem;
-      border-radius:999px;
-      border:1px solid rgba(125,211,252,0.7);
-      color:#f3f5fb;
-      text-decoration:none;
-      font-weight:700;
-      background:rgba(125,211,252,0.12);
-      transition:transform 0.2s ease, background 0.2s ease;
-    }
-    .spotlight__body a:hover {
-      transform:translateY(-2px);
-      background:rgba(125,211,252,0.25);
-    }
-    footer {
-      text-align:center;
-      padding:2rem 1rem 3rem;
-      color:#94a3b8;
-    }
-  </style>
-</head>
-<body>
-  <header class="hero">
-    <div class="hero__inner">
-      <img src="logo.png" alt="Memoriais Eternos logo" class="hero__logo" />
-      <h1>Memoriais Eternos</h1>
-      <p class="sub">Transformamos o legado em uma memória digital elegante: fotos e QR Code digital para confeccionar a plaquinha e adicionar a lápide, tudo pronto para emocionar quem visita.</p>
-      <div style="display:flex;flex-direction:column;gap:.75rem;align-items:center;">
-        <a href="joao_silva/index.html" class="btn-primary" style="background:rgba(255,255,255,0.1);color:#f4f6fb;box-shadow:none;border:1px solid rgba(255,255,255,0.25);">Ver memorial exemplo</a>
-        <a href="https://pay.hotmart.com/P105045764G" target="_blank" rel="noreferrer" class="btn-primary">Garanta o memorial agora</a>
-      </div>
-    </div>
-  </header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aetrix | Memoriais Eternos</title>
+    <link rel="icon" href="logop.png" type="image/png" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #02040b;
+        --panel: rgba(15, 23, 42, 0.92);
+        --accent: #7dd3fc;
+        --accent-strong: #22d3ee;
+        --accent-warm: #fbbf24;
+        --soft: #f3f5fb;
+        font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      }
 
-  <section class="section">
-    <h2>Porque este plano emociona e converte</h2>
-    <p class="lead">A cada clique pré-aprovado, entregamos páginas com narrativa guiada, galeria em destaque e o QR Code pronto para ser fixado na lápide.</p>
-    <div class="feature-grid">
-      <article class="feature">
-        <h3>Crie um tributo cinematográfico</h3>
-        <p>Detalhes luminosos, tipografias largas e contrastes suaves conduzem o visitante ao sentimento certo.</p>
-      </article>
-      <article class="feature">
-        <h3>Galeria viva</h3>
-        <p>Fotos intercaladas com textos curtos e títulos que lembram momentos marcantes.</p>
-      </article>
-      <article class="feature">
-        <h3>QR Code premium</h3>
-        <p>Ao contratar, enviamos o código digital já em resolução alta para instalar na lápide ou na placa memorial.</p>
-      </article>
-    </div>
-  </section>
+      * {
+        box-sizing: border-box;
+      }
 
-  <section class="section spotlight">
-    <div class="spotlight__card">
-      <div class="spotlight__media">
-        <img src="joao_silva/img/foto2.jpg" alt="João Silva sorrindo para a família" />
-      </div>
-      <div class="spotlight__body">
-        <h3>Memorial de João Silva</h3>
+      body {
+        background: var(--bg);
+        color: var(--soft);
+        margin: 0;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      main,
+      section {
+        padding: 2.5rem 1.25rem;
+      }
+
+      .hero {
+        background: linear-gradient(180deg, rgba(5, 10, 20, 0.94), rgba(2, 6, 11, 0.95)),
+          url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=1600&amp;q=80')
+            center/cover;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero__inner {
+        max-width: 960px;
+        padding: 0 1rem;
+      }
+
+      .hero__logo {
+        width: clamp(110px, 12vw, 150px);
+        margin: 0 auto 1.5rem;
+        display: block;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7));
+      }
+
+      h1 {
+        font-size: clamp(3rem, 5vw, 4.25rem);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .hero__inner p {
+        font-size: 1.2rem;
+        color: #d4def7;
+        margin-bottom: 2rem;
+      }
+
+      .hero__cta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2.4rem;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(130deg, var(--accent), var(--accent-strong));
+        color: #020617;
+        box-shadow: 0 25px 60px rgba(125, 211, 252, 0.4);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--soft);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .section-title h2 {
+        font-size: clamp(2.3rem, 3vw, 3rem);
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-title p {
+        color: #cbd5f5;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .step {
+        padding: 1.5rem;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .step span {
+        display: inline-flex;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(125, 211, 252, 0.1);
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        color: var(--accent);
+      }
+
+
+      .grid-two {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .benefits-list,
+      .objections-list,
+      .testimonials-list {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .benefits-list li,
+      .objections-list li {
+        list-style: none;
+        padding: 1rem;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .benefits-list li strong,
+      .objections-list li strong {
+        color: var(--accent-warm);
+        display: block;
+        margin-bottom: 0.4rem;
+      }
+
+      .testimonials-section {
+        padding-top: 0;
+      }
+
+      .testimonial-grid {
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .testimonial-photo {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .testimonial-stars {
+        color: #fbbf24;
+        font-size: 1.1rem;
+      }
+
+      .testimonial-name {
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .example-section {
+        --example-bg: rgba(255, 255, 255, 0.02);
+      }
+
+      .example-context {
+        max-width: 780px;
+        margin: 0.25rem auto 1.5rem;
+        color: #cbd5f5;
+        font-size: 1rem;
+      }
+
+      .example-grid {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+
+      .mockup-card {
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(180deg, rgba(20, 24, 35, 0.9), rgba(2, 6, 11, 0.95));
+        padding: 1.5rem;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        position: relative;
+        overflow: hidden;
+        min-height: 360px;
+      }
+
+      .mockup-card::after {
+        content: '';
+        position: absolute;
+        inset: 10%;
+        border-radius: 20px;
+        border: 1px dashed rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+      }
+
+      .mockup-window {
+        position: relative;
+        z-index: 1;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(3, 7, 14, 0.9);
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        min-height: 280px;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      .mockup-photo {
+        width: 100%;
+        height: 160px;
+        border-radius: 18px;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .mockup-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+
+      .mockup-details span {
+        font-size: 0.95rem;
+        color: #cbd5f5;
+      }
+
+      .mockup-details strong {
+        font-size: 1.15rem;
+        color: var(--accent);
+      }
+
+      .mockup-text {
+        font-size: 1rem;
+        color: #e0e7ff;
+        line-height: 1.5;
+      }
+
+      .example-cta {
+        margin-top: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+      }
+
+      .example-proof {
+        margin-top: 0.85rem;
+        font-size: 0.95rem;
+        color: #c1d4ff;
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.9s ease forwards;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .testimonials-list li {
+        font-style: italic;
+        color: #e0e7ff;
+      }
+
+      .pricing-grid {
+        margin-top: 2rem;
+        display: grid;
+        justify-items: center;
+      }
+
+      .pricing-card {
+        padding: 1.75rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 6, 12, 0.85);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 640px;
+      }
+
+      .pricing-card h3 {
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .pricing-card span {
+        font-size: 2.8rem;
+        font-weight: 700;
+        display: block;
+      }
+
+      .pricing-card p {
+        color: #cbd5f5;
+      }
+
+      .pricing-card.highlight {
+        border-color: rgba(248, 175, 36, 0.8);
+        background: rgba(248, 175, 36, 0.05);
+        box-shadow: 0 20px 45px rgba(248, 175, 36, 0.35);
+        width: min(560px, 100%);
+        padding: 2rem 2.5rem;
+      }
+
+      .urgency,
+      .guarantee,
+      .security {
+        text-align: center;
+        background: rgba(125, 211, 252, 0.05);
+        border-radius: 20px;
+        padding: 1.5rem;
+        border: 1px solid rgba(125, 211, 252, 0.25);
+        margin: 1.5rem auto 0;
+        max-width: 900px;
+      }
+
+      .security-icons {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+
+      .security-icons span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      footer {
+        padding: 2.5rem 1rem;
+        text-align: center;
+        color: #94a3b8;
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding-top: 3rem;
+        }
+
+        .hero__inner h1 {
+          letter-spacing: 0.06em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__inner">
+        <img src="logo.png" alt="Memoriais Eternos logo" class="hero__logo" />
+        <h1>Mantenha viva a memória de quem você ama</h1>
         <p>
-          Um tributo cinematográfico ao jeito sereno de João, com fotos emolduradas, histórias especiais e QR Code pronto
-          para acompanhar a lápide. A página já está no ar e pronta para emocionar quem chega para relembrar.
+          Memoriais Eternos cria a homenagem digital com fotos, textos emocionais e QR Code pronto para gravar na lápide,
+          lutamos para que o afeto permaneça inteiro logo no primeiro toque.
         </p>
-        <a href="joao_silva/index.html" class="btn-primary">Visitar o memorial</a>
+        <div class="hero__cta">
+          <a href="https://wa.me/553891445276?text=Olá,%20quero%20criar%20um%20memorial%20digital%20para%20homenagear%20alguém%20especial.%20Vi%20que%20tem%20QR%20Code%20e%20achei%20incrível.%20Pode%20me%20explicar%20como%20funciona?" target="_blank" rel="noreferrer" class="btn btn-primary"
+            >Criar meu memorial agora</a
+          >
+          <a href="joao_silva/index.html" class="btn btn-secondary">Ver memorial exemplo</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <section class="section">
-    <h2>PAGAMENTO UNICO AO ANO</h2>
-    <p class="lead">Um único pagamento anual e o memorial permanece ativo, consultar valores para atualizar fotos e dados da pagina.</p>
-    <div class="pricing">
-      <div class="pricing-card">
-        <span>R$ 149,90</span>
-        <small>Pagamento único por 12 meses</small>
-        <p>Inclui produção completa, QR Code digital com alta resolução em pdf e png, atualização de fotos e suporte via WhatsApp.</p>
-      </div>
-    </div>
-    <div class="image-grid">
-      <img src="image1.jpg" alt="Registro de memória" />
-      <img src="image2.jpg" alt="Velas e flores" />
-      <img src="image3.jpg" alt="Pessoa olhando fotos" />
-    </div>
-  </section>
+    <main>
+      <section>
+        <div class="section-title">
+          <h2>Como criamos um tributo que emociona?</h2>
+          <p>Em três passos simples, você entrega o amor e nós montamos a página memorial pronta para ser acessada via QR.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span>01</span>
+            <h3>Compra guiada</h3>
+            <p>Pague com segurança e receba o checklist para juntar fotos, datas e histórias.</p>
+          </article>
+          <article class="step">
+            <span>02</span>
+            <h3>Criação do memorial</h3>
+            <p>Equipe de copy e design monta a página memorável com textos, galeria e ambiente emocional.</p>
+          </article>
+          <article class="step">
+            <span>03</span>
+            <h3>Escaneamento do QR Code</h3>
+            <p>Você recebe o QR Digital (PDF, PNG) em alta resolução e o visitante acessa o tributo no celular em segundos.</p>
+          </article>
+        </div>
+      </section>
 
-  <section class="section cta-section">
-    <div class="cta-inner">
-      <div>
-        <h3>Pronto para emocionar?</h3>
-        <p>Garanta o memorial agora.</p>
-      </div>
-      <a href="https://pay.hotmart.com/P105045764G" target="_blank" rel="noreferrer">Quero contratar</a>
-    </div>
-  </section>
+      <section class="example-section">
+        <div class="section-title">
+          <h2>Veja como fica um memorial na prática</h2>
+          <p>Este é um exemplo de como seu memorial será exibido ao escanear o QR Code.</p>
+        </div>
+        <p class="example-context">
+          Imagine poder acessar lembranças como essa a qualquer momento, apenas apontando a câmera do celular.
+        </p>
+        <div class="example-grid">
+          <div class="mockup-card fade-up">
+            <div class="mockup-window">
+              <img src="image3.jpg" alt="Foto de homenageada" class="mockup-photo" />
+              <div class="mockup-details">
+                <strong>João Silva</strong>
+                <span>12/04/1952 — 03/11/2024</span>
+              </div>
+              <p class="mockup-text">
+                Para sempre em nossos corações. Sua alegria e amor continuam vivos em cada lembrança que compartilhamos.
+              </p>
+            </div>
+            <div class="example-cta">
+              <a href="joao_silva/index.html" class="btn btn-secondary">Ver memorial exemplo</a>
+              <p class="example-proof">Mais de 850 famílias já criaram seus memoriais e compartilham memórias todos os dias.</p>
+            </div>
+          </div>
+        </div>
+        <div class="example-cta">
+          <a href="https://wa.me/553891445276?text=Olá,%20quero%20criar%20um%20memorial%20digital%20para%20homenagear%20alguém%20especial.%20Vi%20que%20tem%20QR%20Code%20e%20achei%20incrível.%20Pode%20me%20explicar%20como%20funciona?" target="_blank" rel="noreferrer" class="btn btn-primary"
+            >Quero criar um memorial assim</a
+          >
+        </div>
+      </section>
 
-</body>
+      <section>
+        <div class="section-title">
+          <h2>Benefícios que emocionam cada visita</h2>
+        </div>
+        <ul class="benefits-list">
+          <li>
+            <strong>Não esquecer nunca:</strong>
+            mantenha viva a memória que se perde quando os detalhes viram passado.
+          </li>
+          <li>
+            <strong>Compartilhar memórias:</strong>
+            famílias espalhadas recebem o tributo com link direto por mensagem e redes.
+          </li>
+          <li>
+            <strong>Homenagem eterna:</strong>
+            texto e imagens guardados online para gerações futuras revisitarem.
+          </li>
+          <li>
+            <strong>QR Code instantâneo:</strong>
+            basta escanear e o visitante é guiado ao memorial sem precisar digitar nada.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h2>Sem medo de complicações</h2>
+        </div>
+        <ul class="objections-list">
+          <li>
+            <strong>Não precisa saber tecnologia:</strong>
+            nós cuidamos de toda a montagem e envio do QR code digital em PDF ou PNG.
+          </li>
+          <li>
+            <strong>Criação simples e guiada:</strong>
+            checklist passo a passo e suporte por WhatsApp para ajustar o texto.
+          </li>
+          <li>
+            <strong>Acesso imediato:</strong>
+            memorial e iniciado assim que o pagamento é confirmado e arquivos enviados.
+          </li>
+          <li>
+            <strong>Funciona em qualquer celular:</strong>
+            memória responsiva, leve e compatível com Android e iOS.
+          </li>
+        </ul>
+      </section>
+
+      <section class="testimonials-section">
+        <div class="section-title">
+          <h2>Quem já usou, recomenda</h2>
+          <p>Veja o que estão dizendo sobre o memorial</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <img src="avaliacao1.png" alt="Maria S." class="testimonial-photo" />
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-name">— Maria S.</div>
+              </div>
+            </div>
+            <p>“Fiz pro meu pai que morreu no ano passado, e quando mostrei pra minha mãe ela chorou na hora. Ficou muito lindo e já deixei o QR junto da foto dele.”</p>
+          </article>
+          <article class="testimonial-card">
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <img src="avaliacao2.png" alt="João P." class="testimonial-photo" />
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-name">— João P.</div>
+              </div>
+            </div>
+            <p>“Eu não entendo nada de site, mas me mandaram um modelo pronto para ver como funciona. Hoje toda a família acessa quando passa no cemitério.”</p>
+          </article>
+          <article class="testimonial-card">
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <img src="avaliacao3.png" alt="Carla M." class="testimonial-photo" />
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-name">— Carla M.</div>
+              </div>
+            </div>
+            <p>“Coloquei no túmulo da minha avó e ficou perfeito. Sobrinhos que vêm de fora escaneiam e mandam pros filhos, é emocionante demais.”</p>
+          </article>
+          <article class="testimonial-card">
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <img src="avaliacao4.png" alt="Eduardo R." class="testimonial-photo" />
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-name">— Eduardo R.</div>
+              </div>
+            </div>
+            <p>“Ela guardava tudo em cadernos. Recebi o memorial pronto e a gente leu junto, minha esposa caiu no choro, disse que a lembrança voltou viva.”</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h2>Plano Anual</h2>
+          <p>Apenas um pagamento por ano, sem cobranças mensais.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card highlight">
+            <h3>Plano Completo</h3>
+            <span>R$ 149,90</span>
+            <p>Galeria expandida para até 20 fotos, histórias narradas e QR code exclusivo digital em PDF ou PNG.</p>
+            <a href="https://wa.me/553891445276?text=Olá,%20quero%20criar%20um%20memorial%20digital%20para%20homenagear%20alguém%20especial.%20Vi%20que%20tem%20QR%20Code%20e%20achei%20incrível.%20Pode%20me%20explicar%20como%20funciona?" target="_blank" rel="noreferrer" class="btn btn-primary"
+              >Quero criar um memorial assim</a
+            >
+          </article>
+        </div>
+      </section>
+
+      <section class="urgency">
+        <strong>Oferta por tempo limitado</strong>
+        <p>Desconto disponível hoje: garanta o plano com preço especial e recebimento imediato do QR Code.</p>
+      </section>
+
+      <section class="guarantee">
+        <strong>7 dias de garantia ou seu dinheiro de volta</strong>
+        <p>Sem perguntas. Se você não sentir que o memorial captura o amor, devolvemos cada centavo.</p>
+      </section>
+
+      <section class="security">
+        <strong>Pagamento 100% seguro</strong>
+        <p>Checkout criptografado, suporte oficial e confirmação instantânea.</p>
+        <div class="security-icons">
+          <span>100% Seguro</span>
+          <span>Checkout criptografado</span>
+          <span>Suporte oficial 24h</span>
+        </div>
+      </section>
+
+      <section style="margin-top:2.5rem;">
+        <div class="card" style="text-align:center;">
+          <h2>Quero homenagear alguém especial</h2>
+          <p>A emoção existe. O cuidado é nosso. Basta um clique para colocar a memória em pé de igualdade com o amor.</p>
+          <a href="https://wa.me/553891445276?text=Olá,%20quero%20criar%20um%20memorial%20digital%20para%20homenagear%20alguém%20especial.%20Vi%20que%20tem%20QR%20Code%20e%20achei%20incrível.%20Pode%20me%20explicar%20como%20funciona?" target="_blank" rel="noreferrer" class="btn btn-primary"
+            >Quero homenagear alguém especial</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Aetrix | Memoriais Eternos · Memorial digital com QR Code para eternizar quem você ama.</p>
+    </footer>
+  </body>
 </html>
