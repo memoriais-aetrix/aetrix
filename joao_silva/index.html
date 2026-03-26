@@ -704,71 +704,20 @@
       </div>
     </section>
 
-    <section class="section-card message-section" style="--delay:0.6s;">
-      <div class="section-head">
-        <div>
-          <h3>Mensagens e homenagens</h3>
-          <p>Livro de memórias vivo: depoimentos recentes e mensagens que chegam do coração.</p>
-        </div>
-        <button class="btn btn-primary" id="messageButton">Deixar uma mensagem</button>
-      </div>
-      <ul class="message-list" id="lista-mensagens">
-        <!-- renderizado pelo JS -->
-      </ul>
-    </section>
-
     <footer>
-      Este memorial foi criado para manter viva uma história especial.
+      Este memorial foi criado para manter viva uma hist?ria especial.
     </footer>
   </div>
 
-  <div class="message-overlay" id="messageOverlay">
-    <div class="message-form-card">
-      <button class="overlay-close" id="closeOverlay" aria-label="Fechar formulário">×</button>
-      <h3>Deixar uma mensagem</h3>
-      <form id="tributeForm" autocomplete="off">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" />
-        <label for="mensagem">Mensagem</label>
-        <textarea id="mensagem" name="mensagem" placeholder="Escreva o que sente" required></textarea>
-        <button type="button" class="btn btn-primary" id="enviarBtn" onclick="enviarMensagem()">Enviar mensagem</button>
-      </form>
-    </div>
-  </div>
-
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox__close" type="button" aria-label="Fechar imagem">×</button>
-    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Foto anterior">‹</button>
+    <button class="lightbox__close" type="button" aria-label="Fechar imagem">?</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Foto anterior">?</button>
     <img class="lightbox__media" id="lightboxImage" src="" alt="" />
     <p class="lightbox__caption" id="lightboxCaption"></p>
-    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Próxima foto">›</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Pr?xima foto">?</button>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check-compat.js"></script>
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCcsJEwmVUiEYbRFxScbv-heeyeFTlgCU0",
-      authDomain: "aetrix-memorial.firebaseapp.com",
-      projectId: "aetrix-memorial",
-      storageBucket: "aetrix-memorial.firebasestorage.app",
-      messagingSenderId: "79540021014",
-      appId: "1:79540021014:web:2f6370c464846ba1119237"
-    };
-
-    const app = firebase.initializeApp(firebaseConfig);
-    try {
-      firebase.initializeAppCheck(firebase, {
-        provider: new firebase.appCheck.ReCaptchaV3Provider('6LdUE5gsAAAAAay-TfgSVX_saLynHq3PaoIDPX2h'),
-        isTokenAutoRefreshEnabled: true,
-      });
-    } catch (error) {
-      console.warn('App Check inicialização falhou', error);
-    }
-    const db = firebase.firestore();
-    const messagesRef = db.collection('memoriais').doc('joao_silva').collection('mensagens');
-
     (function () {
       const galleryItems = Array.from(document.querySelectorAll('.gallery__item'));
       const lightbox = document.getElementById('lightbox');
@@ -826,141 +775,6 @@
         if (event.key === 'Escape') hideLightbox();
         if (event.key === 'ArrowRight') shiftPhoto(1);
         if (event.key === 'ArrowLeft') shiftPhoto(-1);
-      });
-
-      const listaMensagens = document.getElementById('lista-mensagens');
-      const messageButton = document.getElementById('messageButton');
-      const messageOverlay = document.getElementById('messageOverlay');
-      const closeOverlay = document.getElementById('closeOverlay');
-      const nomeInput = document.getElementById('nome');
-      const mensagemInput = document.getElementById('mensagem');
-      const enviarBtn = document.getElementById('enviarBtn');
-
-      function formatTimestamp(value) {
-        if (!value) return '';
-        const date = value.toDate ? value.toDate() : value instanceof Date ? value : new Date(value);
-        return date.toLocaleString('pt-BR', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        });
-      }
-
-      function renderMessages(docs) {
-        listaMensagens.innerHTML = '';
-        const fragment = document.createDocumentFragment();
-        docs.forEach((doc) => {
-          const { nome = 'Visitante', mensagem = '', data } = doc.data();
-          const li = document.createElement('li');
-          li.className = 'message-item';
-
-          const strong = document.createElement('strong');
-          strong.textContent = nome;
-
-          const span = document.createElement('span');
-          span.textContent = mensagem;
-
-          const small = document.createElement('small');
-          small.className = 'message-time';
-          small.textContent = formatTimestamp(data);
-
-          li.appendChild(strong);
-          li.appendChild(span);
-          li.appendChild(small);
-          fragment.appendChild(li);
-        });
-
-        listaMensagens.appendChild(fragment);
-        if (listaMensagens.firstElementChild) {
-          listaMensagens.firstElementChild.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-
-      messagesRef.orderBy('data', 'desc').onSnapshot((snapshot) => {
-        renderMessages(snapshot.docs);
-      });
-
-      function openOverlay() {
-        messageOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeOverlayForm() {
-        messageOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      messageButton.addEventListener('click', openOverlay);
-      closeOverlay.addEventListener('click', closeOverlayForm);
-      messageOverlay.addEventListener('click', (event) => {
-        if (event.target === messageOverlay) closeOverlayForm();
-      });
-
-      let isSending = false;
-      window.enviarMensagem = async function enviarMensagem() {
-        if (isSending) return;
-        const nome = nomeInput.value.trim();
-        const mensagem = mensagemInput.value.trim();
-        if (!nome || !mensagem) {
-          alert('Informe nome e mensagem antes de enviar.');
-          return;
-        }
-
-        isSending = true;
-        enviarBtn.disabled = true;
-        const textoOriginal = enviarBtn.textContent;
-        enviarBtn.textContent = 'Enviando...';
-
-        try {
-          await messagesRef.add({
-            nome,
-            mensagem,
-            data: new Date(),
-          });
-          nomeInput.value = '';
-          mensagemInput.value = '';
-          closeOverlayForm();
-        } catch (error) {
-          console.error(error);
-          alert('N?o foi poss?vel enviar a mensagem. Tente novamente.');
-        } finally {
-          isSending = false;
-          enviarBtn.textContent = textoOriginal;
-          enviarBtn.disabled = false;
-        }
-      };
-
-      const visitorCount = document.getElementById('visitorCount');
-      const storedCount = Number(localStorage.getItem('joaoVisitCount')) || 8742;
-      const increment = Math.floor(Math.random() * 3) + 1;
-      const updatedCount = storedCount + increment;
-      localStorage.setItem('joaoVisitCount', updatedCount);
-      visitorCount.textContent = `${updatedCount.toLocaleString('pt-BR')} pessoas j? visitaram este memorial`;
-
-      const shareWhatsApp = document.getElementById('shareWhatsApp');
-      const copyLink = document.getElementById('copyLink');
-
-      const shareText = encodeURIComponent(
-        'Conhe?a o memorial do Jo?o Silva. Uma homenagem cheia de carinho e mem?rias importantes.'
-      );
-      const shareLink = encodeURIComponent(window.location.href);
-
-      shareWhatsApp.addEventListener('click', () => {
-        window.open(`https://wa.me/?text=${shareText}%0A${shareLink}`, '_blank');
-      });
-
-      copyLink.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          copyLink.textContent = 'Link copiado!';
-          setTimeout(() => {
-            copyLink.textContent = 'Copiar link';
-          }, 2000);
-        } catch (error) {
-          console.error(error);
-        }
       });
     })();
   </script>
