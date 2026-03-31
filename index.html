@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aetrix cria memorial digital com QR Code em alta resolução para eternizar histórias, fotos e homenagens com acesso fácil pelo celular."
+    />
+    <meta property="og:title" content="Aetrix | Memorial Digital com QR Code" />
+    <meta
+      property="og:description"
+      content="Crie seu memorial digital personalizado com QR Code e compartilhe memórias com toda a família."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="logo.png" />
     <title>Aetrix | Memoriais Eternos</title>
     <link rel="icon" href="logop.png" type="image/png" />
     <style>
@@ -87,7 +98,7 @@
         letter-spacing: 0.05em;
         border: none;
         cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
         text-decoration: none;
       }
 
@@ -105,6 +116,12 @@
 
       .btn:hover {
         transform: translateY(-2px);
+        box-shadow: 0 18px 38px rgba(125, 211, 252, 0.3);
+      }
+
+      .btn:focus-visible {
+        outline: 2px solid rgba(125, 211, 252, 0.9);
+        outline-offset: 2px;
       }
 
       .section-title {
@@ -150,7 +167,6 @@
         margin-bottom: 0.8rem;
         color: var(--accent);
       }
-
 
       .grid-two {
         display: grid;
@@ -339,6 +355,147 @@
         color: #c1d4ff;
       }
 
+      .section-cta {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      .trust-strip {
+        text-align: center;
+        margin-top: 0.25rem;
+      }
+
+      .trust-strip p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #cbd5f5;
+      }
+
+      .trust-icons {
+        margin-top: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+      }
+
+      .trust-icons span {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+        background: rgba(255, 255, 255, 0.02);
+        font-size: 0.92rem;
+      }
+
+      .qr-visual-grid {
+        margin-top: 1.75rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .qr-card {
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+        padding: 1.25rem;
+        text-align: center;
+      }
+
+      .qr-box {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 0.8rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background:
+          radial-gradient(circle at 20% 20%, #fff 4px, transparent 5px),
+          radial-gradient(circle at 75% 20%, #fff 4px, transparent 5px),
+          radial-gradient(circle at 20% 75%, #fff 4px, transparent 5px),
+          repeating-linear-gradient(0deg, #fff 0 6px, #02040b 6px 12px),
+          repeating-linear-gradient(90deg, #fff 0 6px, #02040b 6px 12px);
+      }
+
+      .qr-image {
+        display: block;
+        object-fit: contain;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .phone-box {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 0.8rem;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: linear-gradient(180deg, rgba(125, 211, 252, 0.2), rgba(2, 6, 11, 0.9));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+      }
+
+      .phone-image {
+        display: block;
+        object-fit: contain;
+        background: #02040b;
+        padding: 6px;
+      }
+
+      .faq-list {
+        margin-top: 1.75rem;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .faq-item {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .faq-question {
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        border: none;
+        color: var(--soft);
+        padding: 1rem 1.15rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .faq-question span:last-child {
+        color: var(--accent);
+      }
+
+      .faq-answer {
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.28s ease;
+        padding: 0 1.15rem;
+        color: #cbd5f5;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 180px;
+        padding-bottom: 1rem;
+      }
+
+      .guarantee-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.35rem;
+        color: var(--accent-warm);
+      }
+
       .fade-up {
         opacity: 0;
         transform: translateY(20px);
@@ -398,6 +555,53 @@
         padding: 2rem 2.5rem;
       }
 
+      .price-benefits {
+        margin: 1rem 0 1.25rem;
+        display: grid;
+        gap: 0.55rem;
+        padding: 0;
+      }
+
+      .price-main {
+        font-size: clamp(2rem, 6vw, 3rem);
+        font-weight: 800;
+        line-height: 1.15;
+        color: var(--soft);
+        margin: 0 0 0.2rem;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.55rem;
+        letter-spacing: 0.03em;
+      }
+
+      .price-main small {
+        font-size: 0.46em;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #cbd5f5;
+      }
+
+      .price-cash {
+        font-size: 1.08rem;
+        color: #cbd5f5;
+        margin: 0 0 0.5rem;
+      }
+
+      .price-times {
+        font-size: 1.08em;
+        color: var(--accent);
+      }
+
+      .price-value {
+        color: #f3f5fb;
+        text-shadow: 0 6px 18px rgba(125, 211, 252, 0.18);
+      }
+
+      .price-benefits li {
+        list-style: none;
+      }
+
       .urgency,
       .guarantee,
       .security {
@@ -425,6 +629,17 @@
         padding: 0.4rem 0.8rem;
         border-radius: 999px;
         border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       footer {
@@ -463,7 +678,16 @@
     </header>
 
     <main>
-      <section>
+      <section class="trust-strip reveal">
+        <p>Mais de 850 famílias já eternizaram memórias conosco.</p>
+        <div class="trust-icons">
+          <span>✔ acesso fácil</span>
+          <span>✔ memorial online</span>
+          <span>✔ QR code instantâneo</span>
+        </div>
+      </section>
+
+      <section class="reveal">
         <div class="section-title">
           <h2>Como criamos um tributo que emociona?</h2>
           <p>Em três passos simples, você entrega o amor e nós montamos a página memorial pronta para ser acessada via QR.</p>
@@ -487,7 +711,7 @@
         </div>
       </section>
 
-      <section class="example-section">
+      <section class="example-section reveal">
         <div class="section-title">
           <h2>Veja como fica um memorial na prática</h2>
           <p>Este é um exemplo de como seu memorial será exibido ao escanear o QR Code.</p>
@@ -501,7 +725,7 @@
               <img src="image3.jpg" alt="Foto de homenageada" class="mockup-photo" />
               <div class="mockup-details">
                 <strong>João Silva</strong>
-                <span>12/04/1952 — 03/11/2024</span>
+                <span>12/04/1952 - 03/11/2024</span>
               </div>
               <p class="mockup-text">
                 Para sempre em nossos corações. Sua alegria e amor continuam vivos em cada lembrança que compartilhamos.
@@ -515,12 +739,12 @@
         </div>
         <div class="example-cta">
           <a href="https://pay.hotmart.com/P105045764G" target="_blank" rel="noreferrer" class="btn btn-primary"
-            >Quero criar um memorial assim</a
+            >CRIAR MEMORIAL AGORA</a
           >
         </div>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-title">
           <h2>Benefícios que emocionam cada visita</h2>
         </div>
@@ -542,9 +766,31 @@
             basta escanear e o visitante é guiado ao memorial sem precisar digitar nada.
           </li>
         </ul>
+        <div class="section-cta">
+          <a href="https://pay.hotmart.com/P105045764G" target="_blank" rel="noreferrer" class="btn btn-primary"
+            >CRIAR MEMORIAL AGORA</a
+          >
+        </div>
       </section>
 
-      <section>
+      <section class="reveal">
+        <div class="section-title">
+          <h2>Como funciona o QR Code</h2>
+          <p>Basta apontar a câmera do celular para o QR Code para acessar o memorial imediatamente.</p>
+        </div>
+        <div class="qr-visual-grid">
+          <article class="qr-card">
+            <img src="qr-code.png" alt="QR Code" class="qr-box qr-image" />
+            <p>QR Code em alta resolução para gravação e impressão.</p>
+          </article>
+          <article class="qr-card">
+            <img src="memorial.png" alt="Memorial no celular" class="phone-box phone-image" />
+            <p>O visitante escaneia e entra no memorial em segundos.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal">
         <div class="section-title">
           <h2>Sem medo de complicações</h2>
         </div>
@@ -559,7 +805,7 @@
           </li>
           <li>
             <strong>Acesso imediato:</strong>
-            memorial e iniciado assim que o pagamento é confirmado e arquivos enviados.
+            memorial é iniciado assim que o pagamento é confirmado e arquivos enviados.
           </li>
           <li>
             <strong>Funciona em qualquer celular:</strong>
@@ -568,7 +814,7 @@
         </ul>
       </section>
 
-      <section class="testimonials-section">
+      <section class="testimonials-section reveal">
         <div class="section-title">
           <h2>Quem já usou, recomenda</h2>
           <p>Veja o que estão dizendo sobre o memorial</p>
@@ -579,7 +825,7 @@
               <img src="avaliacao1.png" alt="Maria S." class="testimonial-photo" />
               <div>
                 <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-name">— Maria S.</div>
+                <div class="testimonial-name">- Maria S.</div>
               </div>
             </div>
             <p>“Fiz pro meu pai que morreu no ano passado, e quando mostrei pra minha mãe ela chorou na hora. Ficou muito lindo e já deixei o QR junto da foto dele.”</p>
@@ -589,7 +835,7 @@
               <img src="avaliacao2.png" alt="João P." class="testimonial-photo" />
               <div>
                 <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-name">— João P.</div>
+                <div class="testimonial-name">- João P.</div>
               </div>
             </div>
             <p>“Eu não entendo nada de site, mas me mandaram um modelo pronto para ver como funciona. Hoje toda a família acessa quando passa no cemitério.”</p>
@@ -599,7 +845,7 @@
               <img src="avaliacao3.png" alt="Carla M." class="testimonial-photo" />
               <div>
                 <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-name">— Carla M.</div>
+                <div class="testimonial-name">- Carla M.</div>
               </div>
             </div>
             <p>“Coloquei no túmulo da minha avó e ficou perfeito. Sobrinhos que vêm de fora escaneiam e mandam pros filhos, é emocionante demais.”</p>
@@ -609,27 +855,134 @@
               <img src="avaliacao4.png" alt="Eduardo R." class="testimonial-photo" />
               <div>
                 <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-name">— Eduardo R.</div>
+                <div class="testimonial-name">- Eduardo R.</div>
               </div>
             </div>
             <p>“Ela guardava tudo em cadernos. Recebi o memorial pronto e a gente leu junto, minha esposa caiu no choro, disse que a lembrança voltou viva.”</p>
           </article>
         </div>
-      </section>
-
-      <section style="margin-top:2.5rem;">
-        <div class="card" style="text-align:center;">
-          <h2>Quero homenagear alguém especial</h2>
-          <p>A emoção existe. O cuidado é nosso. Basta um clique para colocar a memória em pé de igualdade com o amor.</p>
+        <div class="section-cta">
           <a href="https://pay.hotmart.com/P105045764G" target="_blank" rel="noreferrer" class="btn btn-primary"
-            >Quero homenagear alguém especial</a
+            >CRIAR MEMORIAL AGORA</a
           >
         </div>
       </section>
+
+      <section class="reveal">
+        <div class="section-title">
+          <h2>Perguntas frequentes</h2>
+        </div>
+        <div class="faq-list" id="faq">
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>1. Como funciona o QR Code no túmulo?</span>
+              <span>+</span>
+            </button>
+            <p class="faq-answer">O QR é gravado na placa e, ao escanear com a câmera, o memorial abre automaticamente.</p>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>2. Em quanto tempo o memorial fica pronto?</span>
+              <span>+</span>
+            </button>
+            <p class="faq-answer">Após o envio do material, a montagem é iniciada rapidamente e você recebe o acesso para revisar.</p>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>3. Preciso saber tecnologia para criar?</span>
+              <span>+</span>
+            </button>
+            <p class="faq-answer">Não. A equipe cuida de toda a configuração e orienta você em cada etapa.</p>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>4. Posso enviar várias fotos?</span>
+              <span>+</span>
+            </button>
+            <p class="faq-answer">Sim. Você pode enviar várias fotos para compor a homenagem da forma que desejar.</p>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>5. O memorial ficará online por quanto tempo?</span>
+              <span>+</span>
+            </button>
+            <p class="faq-answer">O memorial fica publicado para acesso contínuo da família pelo link e pelo QR Code.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="guarantee reveal">
+        <div class="guarantee-icon" aria-hidden="true">🛡️</div>
+        <h2>Garantia de satisfação</h2>
+        <p>
+          Se você não ficar satisfeito com o memorial criado, ajustamos o conteúdo até que a homenagem fique perfeita para sua família.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <div class="section-title">
+          <h2>Crie seu memorial digital hoje</h2>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card highlight" style="text-align:center;">
+            <h3 class="price-main"><span class="price-times">6x</span> <small>de</small> <span class="price-value">R$ 28,12</span></h3>
+            <p class="price-cash">Ou R$ 149,90 à vista</p>
+            <ul class="price-benefits">
+              <li>✔ Memorial digital personalizado</li>
+              <li>✔ QR Code em alta resolução</li>
+              <li>✔ Página com fotos e homenagem</li>
+              <li>✔ Acesso fácil pelo celular</li>
+              <li>✔ Link para compartilhar com família</li>
+            </ul>
+            <a href="https://pay.hotmart.com/P105045764G" target="_blank" rel="noreferrer" class="btn btn-primary"
+              >CRIAR MEMORIAL AGORA</a
+            >
+          </article>
+        </div>
+      </section>
+
     </main>
 
     <footer>
       <p>© 2026 Aetrix | Memoriais Eternos · Memorial digital com QR Code para eternizar quem você ama.</p>
     </footer>
+
+    <script>
+      const revealItems = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach((item) => {
+        const button = item.querySelector('.faq-question');
+        const icon = button.querySelector('span:last-child');
+        button.addEventListener('click', () => {
+          const active = item.classList.contains('active');
+
+          faqItems.forEach((faq) => {
+            faq.classList.remove('active');
+            const faqIcon = faq.querySelector('.faq-question span:last-child');
+            if (faqIcon) faqIcon.textContent = '+';
+          });
+
+          if (!active) {
+            item.classList.add('active');
+            icon.textContent = '−';
+          }
+        });
+      });
+    </script>
   </body>
 </html>
+
