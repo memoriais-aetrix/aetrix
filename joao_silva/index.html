@@ -63,64 +63,24 @@
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      align-items: center;
-      text-align: left;
-      margin-bottom: 2.5rem;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto 2.2rem;
+      text-align: center;
       opacity: 0;
       animation: fadeUp 0.9s ease forwards;
       animation-delay: 0.1s;
     }
 
-    .hero__text h1 {
-      font-size: clamp(3rem, 4vw, 4.5rem);
-      margin: 0.3rem 0 0.6rem;
-      letter-spacing: 0.1em;
-    }
-
-    .hero__phrase {
-      text-transform: uppercase;
-      letter-spacing: 0.5em;
-      font-size: 0.75rem;
-      margin: 0;
-      color: var(--highlight);
-    }
-
-    .hero__dates {
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      margin: 0;
-      color: #9fb1d9;
-    }
-
-    .hero__subtitle {
-      margin-top: 1rem;
-      font-size: 1.05rem;
-      max-width: 520px;
-      color: #c2cff2;
-    }
-
     .hero__photo {
       width: 100%;
-      max-width: 360px;
-      justify-self: center;
-      border-radius: 28px;
+      aspect-ratio: 1 / 1.12;
+      border-radius: 18px;
       overflow: hidden;
-      border: 3px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 25px 45px rgba(2, 6, 23, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 44px rgba(2, 6, 23, 0.72);
       position: relative;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .hero__photo::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 65%);
-      pointer-events: none;
+      background: #0b0f16;
     }
 
     .hero__photo img {
@@ -128,19 +88,63 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: saturate(1.1) contrast(1.05);
+      filter: saturate(1.08) contrast(1.04);
+      opacity: 0;
+      transform: scale(1);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    @keyframes float {
-      0% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-6px);
-      }
-      100% {
-        transform: translateY(0);
-      }
+    .hero__photo--loaded img {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 1rem 1rem 1.2rem;
+      background: linear-gradient(180deg, rgba(3, 7, 14, 0.02) 44%, rgba(3, 7, 14, 0.92) 100%);
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+    }
+
+    .hero__overlay h1 {
+      font-size: clamp(2.05rem, 9vw, 2.8rem);
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .hero__dates {
+      margin: 0;
+      color: #d4d7df;
+      font-size: 0.98rem;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    .hero__text {
+      margin-top: 0.85rem;
+      padding: 0 0.2rem;
+    }
+
+    .hero__phrase {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.7rem;
+      margin: 0;
+      color: var(--highlight);
+    }
+
+    .hero__subtitle {
+      margin: 0.55rem auto 0;
+      font-size: 0.98rem;
+      max-width: 38ch;
+      color: #c2cff2;
     }
 
     .section-card {
@@ -603,14 +607,6 @@
     }
 
     @media (max-width: 768px) {
-      .hero {
-        text-align: center;
-      }
-
-      .hero__photo {
-        max-width: 280px;
-      }
-
       .story-card {
         grid-template-columns: 1fr;
       }
@@ -632,24 +628,29 @@
       .section-card {
         padding: 1.25rem;
       }
+
+      .hero__subtitle {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
   <div class="layout">
     <header class="hero">
+      <div class="hero__photo" id="heroPhoto">
+        <img src="img/foto2.jpg" alt="João sorrindo para a família" id="heroImage" />
+        <div class="hero__overlay">
+          <h1>João Silva</h1>
+          <p class="hero__dates">12/04/1952 — 03/11/2024</p>
+        </div>
+      </div>
       <div class="hero__text">
         <p class="hero__phrase">Para sempre em nossos corações</p>
-        <h1>João Silva</h1>
-        <p class="hero__dates">12/04/1952 — 03/11/2024</p>
         <p class="hero__subtitle">Pai, marido, engenheiro de sonhos e contador de histórias que deixaram a cidade mais leve.</p>
       </div>
-      <div class="hero__photo">
-        <img src="img/foto1.jpg" alt="João sorrindo para a família" />
-      </div>
     </header>
-
-    <section class="section-card" style="--delay:0.3s;">
+<section class="section-card" style="--delay:0.3s;">
       <h2>Uma homenagem especial</h2>
       <p class="tribute-text">
         João entrou nos dias de cada pessoa com calma e delicadeza. Sempre dizia que cada história merece espaço para respirar,
@@ -718,7 +719,7 @@
     </section>
 
     <footer>
-      Este memorial foi criado para manter viva uma hist?ria especial.
+      Este memorial foi criado para manter viva uma história especial.
     </footer>
   </div>
 
@@ -745,6 +746,21 @@
 
   <script>
     (function () {
+      const heroPhoto = document.getElementById('heroPhoto');
+      const heroImage = document.getElementById('heroImage');
+
+      function revealHeroImage() {
+        if (heroPhoto) heroPhoto.classList.add('hero__photo--loaded');
+      }
+
+      if (heroImage) {
+        if (heroImage.complete) {
+          revealHeroImage();
+        } else {
+          heroImage.addEventListener('load', revealHeroImage, { once: true });
+        }
+      }
+
       const galleryItems = Array.from(document.querySelectorAll('.gallery__item'));
       const lightbox = document.getElementById('lightbox');
       const lightboxImage = document.getElementById('lightboxImage');
@@ -806,3 +822,5 @@
   </script>
 </body>
 </html>
+
+
